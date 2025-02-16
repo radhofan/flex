@@ -2,8 +2,8 @@
 ### THIS README.MD MAY HAVE MORE INSTRUCTIONS THAN THE ORIGINAL REPO TO ENSURE PERFECT REPLICATION
 ### REPRODUCE THIS REPO IN TROVI VIA THIS LINK: https://chameleoncloud.org/experiment/share/6af4bcce-5c57-4051-83e3-122647110c9a
 ### REPRODUCE THIS REPO IN BINDER VIA THIS LINK: https://mybinder.org/ 
-    - GitHub Repository: `[Insert GitHub Repo Link Here]`  
-    - Notebook File (`.ipynb`):** `[Insert Notebook File Name Here]`  
+    - GitHub Repository : `https://github.com/radhofan/flex.git`  
+    - Notebook File : `reproduce.ipynb`  
 ### ORIGINAL REPO LINK: https://github.com/uiuc-arc/flex
 
 # FLEX: Fixing Flaky tests in Machine Learning Projects 
