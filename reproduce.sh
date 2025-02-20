@@ -22,7 +22,7 @@ mamba activate flex
 
 # Install dependencies
 mamba install -c conda-forge r-base r-eva -y
-pip install -r requirements.txt
+pip install -r flex/requirements.txt
 
 # Ensure the projects directory exists
 mkdir -p flex/projects
