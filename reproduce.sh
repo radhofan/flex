@@ -42,4 +42,4 @@ pip install optax==0.1.4
 
 # Activate 'flex' and run the boundschecker
 mamba activate flex
-python flex/boundschecker.py -r coax -test test_update -file flex/projects/coax/coax/experience_replay/_prioritized_test.py -line 137 -conda coax -deps "numpy" -bc
+python flex/tool/boundschecker.py -r coax -test test_update -file flex/projects/coax/coax/experience_replay/_prioritized_test.py -line 137 -conda coax -deps "numpy" -bc
