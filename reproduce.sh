@@ -17,7 +17,7 @@ source ~/.bashrc  # Reload shell config
 eval "$(mamba shell hook --shell=bash)"
 
 # Create and activate 'flex' environment
-mamba create -n flex python=3.6.15 -y
+mamba create -n flex python=3.6.15 -c conda-forge -y
 mamba activate flex
 
 # Install dependencies
