@@ -13,7 +13,9 @@ echo $testclass
 echo $testname
 echo $envname
 
-source ~/anaconda3/etc/profile.d/conda.sh
+source /home/cc/miniconda/etc/profile.d/conda.sh
+#source ~/miniconda3/etc/profile.d/conda.sh
+
 # make the virtual environment name parameterizable
 conda activate ${envname}
 

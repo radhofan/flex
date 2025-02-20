@@ -45,7 +45,9 @@ if [[ "$3" == "azure" ]]; then
   systemdeps
 fi
 
-source ~/anaconda3/etc/profile.d/conda.sh
+source /home/cc/miniconda/etc/profile.d/conda.sh
+#source ~/miniconda3/etc/profile.d/conda.sh
+
 log "Creating conda environment"
 conda create -n ${project_name} python=${PYTHON_VERSION} -y &>> ${LOGFILE}
 

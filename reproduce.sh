@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+curl -fsSL https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -o miniconda.sh
+bash miniconda.sh -b -p $HOME/miniconda
+export PATH="$HOME/miniconda/bin:$PATH"
 conda install -c conda-forge mamba -y
 mamba create -n flex python=3.6.15 -y
 mamba init
@@ -25,5 +28,3 @@ pip install tensorboardX==2.6.2.2
 pip install optax==0.1.4
 mamba activate flex 
 python boundschecker.py -r coax -test test_update -file flex/projects/coax/coax/experience_replay/_prioritized_test.py  -line 137 -conda coax -deps "numpy" -bc
-
-
