@@ -6,6 +6,7 @@ bash miniconda.sh -b -p $HOME/miniconda
 export PATH="$HOME/miniconda/bin:$PATH"
 
 # Initialize Conda
+mamba shell init --shell=bash
 eval "$($HOME/miniconda/bin/conda shell.bash hook)"
 conda install -c conda-forge mamba -y
 
