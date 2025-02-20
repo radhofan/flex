@@ -31,7 +31,7 @@ mkdir -p flex/projects
 bash flex/tool/scripts/general_setup.sh flex/projects coax-dev/coax local 37c3e667b81537768beb25bb59d0f05124624128
 
 # Activate 'coax' environment and install dependencies
-mamba create -n coax python=3.7.12 -y
+mamba create -n coax python=3.7.12 -c conda-forge -y
 mamba activate coax
 pip install jax==0.3.25
 pip install --upgrade jaxlib==0.3.22 -f https://storage.googleapis.com/jax-releases/jax_releases.html
