@@ -10,14 +10,9 @@ This repository provides an implementation of our paper: [FLEX: Fixing Flaky tes
 
 FLEX uses Extreme Value Theory to determine appropriate bounds for assertions in tests for stochastic Machine Learning algorithms.
 
-## Set up Trovi Project (if using trovi) :
+## Set up Project:
 
 cd into correct working directory
-
-Deactivate default conda trovi environment
-```bash
-conda deactivate
-```
 
 ### Conda environment
 Make a new conda mamba environment with python 3.6.15
