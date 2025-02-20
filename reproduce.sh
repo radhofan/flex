@@ -1,19 +1,32 @@
 #!/usr/bin/env bash
 
+# Install Miniconda
 curl -fsSL https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -o miniconda.sh
 bash miniconda.sh -b -p $HOME/miniconda
 export PATH="$HOME/miniconda/bin:$PATH"
+
+# Initialize Conda
+eval "$($HOME/miniconda/bin/conda shell.bash hook)"
 conda install -c conda-forge mamba -y
+
+# Create and activate 'flex' environment
 mamba create -n flex python=3.6.15 -y
-mamba init
-source ~/.bashrc
+eval "$(mamba shell hook --shell=bash)"  # Ensure shell hook is loaded
 mamba activate flex
+
+# Install dependencies
 mamba install -c conda-forge r-base r-eva -y
 pip install -r requirements.txt
+
+# Ensure the projects directory exists
 mkdir -p flex/projects
-bash flex/tool/scripts/general_setup.sh ../../projects coax-dev/coax local 37c3e667b81537768beb25bb59d0f05124624128
+
+# Run setup script
+bash flex/tool/scripts/general_setup.sh flex/projects coax-dev/coax local 37c3e667b81537768beb25bb59d0f05124624128
+
+# Activate 'coax' environment and install dependencies
+mamba create -n coax python=3.7.12 -y
 mamba activate coax
-mamba install python=3.7.12 -y
 pip install jax==0.3.25
 pip install --upgrade jaxlib==0.3.22 -f https://storage.googleapis.com/jax-releases/jax_releases.html
 mamba install absl-py==1.3.0 -y
@@ -26,5 +39,7 @@ pip install chex==0.1.5
 pip install ray==2.7.2
 pip install tensorboardX==2.6.2.2
 pip install optax==0.1.4
-mamba activate flex 
-python boundschecker.py -r coax -test test_update -file flex/projects/coax/coax/experience_replay/_prioritized_test.py  -line 137 -conda coax -deps "numpy" -bc
+
+# Activate 'flex' and run the boundschecker
+mamba activate flex
+python flex/boundschecker.py -r coax -test test_update -file flex/projects/coax/coax/experience_replay/_prioritized_test.py -line 137 -conda coax -deps "numpy" -bc
