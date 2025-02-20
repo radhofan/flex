@@ -3,16 +3,21 @@
 # Install Miniconda
 curl -fsSL https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -o miniconda.sh
 bash miniconda.sh -b -p $HOME/miniconda
-export PATH="$HOME/miniconda/bin:$PATH"
 
-# Initialize Conda
-mamba shell init --shell=bash
-eval "$($HOME/miniconda/bin/conda shell.bash hook)"
+# Set environment variables
+export PATH="$HOME/miniconda/bin:$PATH"
+export MAMBA_ROOT_PREFIX="$HOME/miniconda"
+
+# Install Mamba
 conda install -c conda-forge mamba -y
+
+# Initialize Mamba shell
+mamba shell init --shell=bash
+source ~/.bashrc  # Reload shell config
+eval "$(mamba shell hook --shell=bash)"
 
 # Create and activate 'flex' environment
 mamba create -n flex python=3.6.15 -y
-eval "$(mamba shell hook --shell=bash)"  # Ensure shell hook is loaded
 mamba activate flex
 
 # Install dependencies
