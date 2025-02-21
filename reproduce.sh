@@ -22,8 +22,7 @@ mamba activate flex
 
 # Install dependencies
 mamba install -c conda-forge r-base r-eva -y
-mamba install -c conda-forge hdf5 -y
-mamba install -c conda-forge libnetcdf -y
+pip install --no-cache-dir netCDF4==1.6.1
 pip install -r flex/requirements.txt
 
 # Ensure the projects directory exists
