@@ -4,17 +4,25 @@ import os
 import re
 import subprocess as sp
 import traceback as tb
+import sys
 
 import numpy as np
 import scipy
 import scipy.stats as st
 
 from CompareDistribution import CompareDistribution
+
 from src import Util
 from src.Util import sample_to_str, compute_max_diff
 from src.lib.AssertSpec import AssertSpec
 from src.lib.AssertType import AssertType
 from src.lib.TestRunResults import TestRunResults
+
+# from . import Util
+# from .Util import sample_to_str, compute_max_diff
+# from .lib.AssertSpec import AssertSpec
+# from .lib.AssertType import AssertType
+# from .lib.TestRunResults import TestRunResults
 
 
 class TestDriver:
@@ -127,6 +135,7 @@ class TestDriver:
             report_file.write("Convergence scores: %s\n" % ' '.join([str(x) for x in convergence_scores]))
             report_file.write("")
             report_file.write(Util.samples_stat(extracted_outputs, self.assert_spec))
+
 
     def run_test_loop(self):
         # create a directory for logs

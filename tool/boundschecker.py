@@ -3,6 +3,7 @@ import argparse
 import logging
 import os
 import time
+import sys
 from typing import List
 
 import numpy as np
@@ -22,7 +23,12 @@ from src.lib.TestRunResults import TestRunResults
 filepath = os.path.abspath(os.path.join(
     os.path.dirname(os.path.realpath(__file__)), "../"))
 
+# filepath = os.path.abspath(os.path.dirname(os.path.realpath(__file__)))
+
+
 PROJECT_DIR = filepath
+
+# sys.path.append(os.path.abspath(os.path.join(PROJECT_DIR, "tool", "src")))
 
 parser = argparse.ArgumentParser(description='Flex arguments')
 parser.add_argument("-r", dest="repo")
@@ -120,6 +126,12 @@ for i, spec in enumerate(assertion_specs):
         err = False
         assert_is_tight = False
 
+        print(vars(test_results))
+
+                  
+        print("test_results.dist_names:", test_results.dist_names)
+        print("extracted_outputs:", extracted_outputs)
+
         if test_results.dist_names is not None and len(test_results.dist_names) > 0 and test_results.dist_names[-1] == 'delta':
             bound, expected = np.inf, np.inf
             lib_logger.logo("Delta distribution.. skipping")
@@ -127,11 +139,13 @@ for i, spec in enumerate(assertion_specs):
         elif extracted_outputs is not None:
             # compute distribution
             if Util.is_max_bound(spec):
+                print("sini")
                 bound = test_results.avg_ppfs[-1]
                 expected = [extracted_outputs[i][evi] for i in range(len(extracted_outputs)) if
              parse_errors[i] == 0]
                 expected = np.max(Util.flatten(expected))
             else:
+                print("sana")
                 bound = -test_results.avg_ppfs[-1]
                 expected = [extracted_outputs[i][evi] for i in range(len(extracted_outputs)) if
                                    parse_errors[i] == 0]
@@ -145,6 +159,7 @@ for i, spec in enumerate(assertion_specs):
             lib_logger.logo("Bound: {0}\nExpected: {1}".format(bound, expected))
             lib_logger.logo("Gap: {0}".format(expected - bound))
         else:
+            print("ini")
             bound, expected = np.inf, np.inf
             lib_logger.logo("Test runs failed")
 
@@ -217,3 +232,8 @@ lib_logger.logo("Deltas : {0}".format(deltas))
 lib_logger.logo("Not converged : {0}".format(notconverged))
 lib_logger.logo("Estimated ppfs: {0}".format(estimated_ppfs))
 lib_logger.logo("Total Time: {0:.2f}s".format(global_stop-global_start))
+
+print("PROJECT_DIR:", PROJECT_DIR)
+print("Repo Path:", "{0}/projects/{1}".format(PROJECT_DIR, args.repo))
+print("Assertions Found:", len(assert_scraper.asserts))
+print("Assertions After Filtering:", len(assertion_specs))
