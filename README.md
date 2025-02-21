@@ -10,22 +10,11 @@ This repository provides an implementation of our paper: [FLEX: Fixing Flaky tes
 
 FLEX uses Extreme Value Theory to determine appropriate bounds for assertions in tests for stochastic Machine Learning algorithms.
 
-## Set up Project:
-
-cd into correct working directory
-
-### Conda environment
-Make a new conda mamba environment with python 3.6.15
-```bash
-mamba create -n flex python=3.6.15
-mamba init
-source ~/.bashrc
-mamba activate flex
-```
+## Installing 
 
 ### Conda setup
 We recommend using a conda environment to install and use flex.
-Run `mamba install -c conda-forge r-base r-eva` to installed the required R packages
+Run `conda install -c conda-forge r-base r-eva` to installed the required R packages
 
 ### Python Setup
 Use Python (3.6-3.8) version due to issues in [astunparse library](https://github.com/simonpercivall/astunparse/issues/62)  
@@ -37,40 +26,11 @@ To install individual projects which contain flaky tests, use the `scripts/gener
 
 Step 1: Create `projects` directory in root.
 
-Step 2; Replace the source in all .sh files with:
-```bash
-source /opt/conda/etc/profile.d/conda.sh
-```
-
-Step 3: Go to `tool/scripts` and run `bash general_setup.sh ../../projects [github-slug] [local/global] [commit]` to set up the project.
-
-E.g, for coax:
-`bash general_setup.sh ../../projects coax-dev/coax local 37c3e667b81537768beb25bb59d0f05124624128`
-
-For coax: We need to install some dependencies manually since there are some errors in the original commit provided
-```bash
-mamba activate coax
-mamba install python=3.7.12
-pip install jax==0.3.25
-pip install --upgrade jaxlib==0.3.22 -f https://storage.googleapis.com/jax-releases/jax_releases.html
-mamba install absl-py==1.3.0
-pip install dm-haiku==0.0.8
-pip install gym==0.25.2
-pip install pandas
-mamba install lz4
-pip install Pillow
-pip install chex==0.1.5
-pip install ray==2.7.2
-pip install tensorboardX==2.6.2.2
-pip install optax==0.1.4
-mamba activate flex
-```
-
-For coax: there are some error regarding jax not having the `jax.tree_multimap` module, it should be replace by the `jax.tree` module instead, the files are in coax/utils/_array.py and coax/experience_replay/_prioritized.py.
+Step 2: Go to `tool/scripts` and run `bash general_setup.sh ../../projects [github-slug] [local/global] [commit]` to set up the project.
 
 All slugs and project commits used in the paper can be found in `newbugs.csv`. `global` mode will install some system level dependencies required for some projects, may need sudo access. Use `local` to avoid installing them.
 
-Step 4: Run `python boundschecker.py -r [repo_name] -test [test_name] -file [filename]  -line [line number] -conda [conda env name] -bc (enables boxcox transformation)` in the `tool/` directory to run FLEX for the project.
+Step 3: Run `python boundschecker.py -r [repo_name] -test [test_name] -file [filename]  -line [line number] -conda [conda env name] -bc (enables boxcox transformation)` in the `tool/` directory to run FLEX for the project.
 
 E.g., for coax:
 `python boundschecker.py -r coax -test test_update -file coax/coax/experience_replay/_prioritized_test.py  -line 137 -conda coax -deps "numpy" -bc`
@@ -128,4 +88,3 @@ If you use our tool, please cite us using:
   organization={FSE}
 }
 ```
-
