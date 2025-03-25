@@ -1,7 +1,7 @@
 ### NOTE: THIS REPOSITORY IS A REPRODUCIBLE PAPER EXPERIMENT AND IS INTENDED TO BE RAN INSIDE CHAMELEON TROVI
 #### Reproduce this experiment via reproduce.ipynb
 #### This experiment has been modified to ensure perfect replication
-#### Reproduce this repository in Chameleon Trovi here: 
+#### Reproduce this repository in Chameleon Trovi here: https://www.chameleoncloud.org/experiment/share/1ded3f44-655c-4f16-a964-9893342f5df6 
 #### Original repository link: https://github.com/uiuc-arc/flex
 
 # FLEX: Fixing Flaky tests in Machine Learning Projects 
